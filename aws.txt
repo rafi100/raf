@@ -1,0 +1,98 @@
+ec2 container service -----it maintain docker(itis one vm)in devops tools docker is one tool.for docker it provides ec2 container service.
+elastic beanstalk-----itis used for automatic app deployment/loadbalance/all it will take automatic.
+lambda-----based on code automatically run the services
+autoscaling---automatically incrase decrease instances based on elb.
+latency-----data accessing time low that is low latency , data accessing time is high that is high latency.
+cloudfront-----low latency purpose we will use cloud front.
+Amazon glacier-----used for data archiving and long term-backup.it is secure,durable,flexible,integrated,low-cost cloud storage. data/log files we will keep in glacier.
+
+
+
+devops tools:
+
+jenkins
+docker container
+puppet/cheff
+git
+openstack
+ansible
+kumernetes
+splunk
+teamcity
+gradle
+
+
+i worked on rhel6 to rhel7 oS Migraction.
+
+how to add cname in Route53
+how to launch website
+how to create hosted zones 
+
+vmware tools-----using vmware tools we can improve the performence of the virtual machine.
+
+Domain Registration:
+
+https://doc.godaddy.com/manage/EZAWS.XYZ/dns
+https://ap.www.namecheap.com/domains/domaincontrolpanel/holamundo.xyz/domain
+
+
+How to recover if a file system is corrupted or crashed?
+If the normal or not related to O/S file system is corrupted first unmount that file system and run fsck command on that file system and if the O/S related file system is corrupted then boot the system with CDROM in single 	user mode and run the fsck command.
+If the normal or not related to O/S file system is crashed then restore it from the recent backup and if the O/S 	related file system is crashed then boot the system with CDROM in single user mode and restore it from the recent backup.
+
+How to create a file with particular size?
+	# dd  if=/dev/zero of=/orafile   bs=1MB  count=500 (to create 500MB size  /orafile with 4KB blocksize)
+
+
+How to repair the Superblock of the file system?
+Whenever we want to store the data into the hard disk, if the input/output error occurs then the Superblock of 	the file system may be erased or corrupted. So, we have to restore or repair that Superblock.
+	# umount    <file system mount point>	(to unmount the file system)
+	# dumpe2fs   </dev/vgname/lvname>  | grep  superblock    (to list the superblocks first primary superblock and  then secondary superblock and so on)
+	# e2fsck   -b   <copy and paste the secondary super block from the above list></dev/vgname/lvname>
+			(to restore the damaged superblock)
+	# mount   -a 	(to mount the file system)
+
+
+How to troubleshoot if the NIC is not working?
+	(a)	First check the NIC card is present or not by  # ifconfig    command. 
+	(b)	If present thencheck the status of the NIC  card is enabled or disabledby click on System menu on the status 		bar, then select Network Connections menu. 
+	(c)	Click on IPV4 settings tab,  select the device eth0 or any other and select Enable button,  then Apply and OK.
+	(d)Open  /etc/sysconfig/network-scripts/ifcfg-eth0  file check  Userctl=yes or no. If it is yes make it as no, then 		check Onboot= yes or no. If it is no make it as yes and save that file.
+	(e) If not present thencheck the status of the NIC  card is enabled or disabled by click on System menu on the 		status bar, then select Network Connections menu.
+	(f) Click on IPV4 settings tab,  select the device eth0 or any other and select Enable button,  then Apply and OK.
+	(g)	Using  # setup (in RHEL - 6) or   # nmcli  (in RHEL - 7)  commands assign the IP address to the system and 		restart the network service by  # service  network  restart  (in RHEL - 6)  or  # systemctl  restart  network  (in 		RHEL - 7)  commands  and enable the service at next reboot by  # chkconfig  network on  (in RHEL - 6)  or  		# systemctl  enable  network  (in RHEL - 7)  commands.
+	(h) Then up the connection by  # ifconfig  eth0  up  (in RHEL - 6)  or  # nmcli connection up  <connection name>		commands.
+	(i) Even though it is not working may be the fault in NIC card. If so, contact the hardware vendor by taking the 		permissions from higher authorities.
+
+
+What are the benefits of NIC Teaming?
+	(i)	 Load balancing
+	(ii)	Fault Tolerance
+	(iii)	Failover
+
+
+How to troubleshoot if the network is not reaching?
+	(i)	First  check the network cable is connected   or   not  by  # ethtool    <NIC  device name>   command. if 	connected then check the IP address is assigned or not by  # ifconfig    <NIC device name>   command.
+	(ii)	Then  check  the system  uptime  by  # uptime    command.
+	(iii) Then  check the network services status  by  # service  network  status   and   # service  NetworkManager  	status    commands.
+	(iv)	 Then  check the network service at Run Level  by  # Chkconfig     --list    network   command.
+	(v)	Then check whether the source network and destination network are in the same domain  or  not.
+	(v)	Then finally check the routing table  by  # route   -n   command.
+
+
+
+System is continuously rebooting. How to troubleshoot it?
+	(i)	Connect the system through console port through putty by providing  IP address, user name and password. 	(ii)	At  console prompt and boot with CDROM in single user mode and mount the root ( /  --->  O/S) file system 		on temporary mount point.
+	(iii)	Check any wrong entries in the cron jobs ie., crontab editor see any reboot scripts are there or not. If found 		remove those entries and reboot the system.
+	(iv)	If the above is not resolved, then check the memory (RAM).
+	(v)	If  RAM module is not working the system get panic and it may continuously reboots.
+	(vi)	 If the RAM module is working then check the RAM size whether the sufficient RAM that requires to run the 		 application is available or not. If not there then increasing the RAM size may be resolve this issue.
+	(vii) Check   "/var/log/messages"   file for any messages regarding continuous rebooting.
+	(viii) Even though there is a sufficient  RAM may be swap space is not sufficient to run all the services and 			  applications then system get panic and may continuously reboots. If so, then increasing the swap size may 		  resolve this issue
+
+
+What is the difference between  # reboot  and  # init 6   commands?
+	Both commands are used to restart  or  reboot  the system.
+	# reboot   command will not send the kill signals to the system and it will kill all the running processes  and  	services forcefully  and then restart the system.
+	# init 6   command will send the kill signals to the system and it will stop all the processes  and  services one by 	one and then restart the system.
+
